@@ -4,6 +4,7 @@ import { useCallback, useRef, useState } from 'react';
 import TodoTemplate from './component/ToDoTemplate';
 import TodoList from './component/TodoList';
 import ToDoEdit from './component/ToDoEdit';
+import ToDoInsert from './component/ToDoInsert';
 
 function App() {
   const [todos, setTodos] = useState([
@@ -61,10 +62,24 @@ function App() {
     onEditToggle();
   }, []);
 
+  const onInsert = useCallback((text) => {
+    if(text){
+      setTodos(
+        (todos) => 
+        [...todos, {id: nextId.current, text: text, checked: false}]
+      );
+      nextId.current += 1;
+    }
+  }, []);
+
   return (
     <TodoTemplate>
+      <ToDoInsert
+      onInsert={onInsert}
+       />
       <TodoList
         todos={todos}
+        setTodos={setTodos}
         onToggle={onToggle}
         onRemove={onRemove}
         onEditToggle={onEditToggle}

@@ -18,7 +18,8 @@ function ToDoListItem({
         <div className="TodoListItem-virtualized" >
             <li className="TodoListItem">
                 <div className={cn('checkbox', { checked: checked})} 
-                onClick={() => onToggle(id) }>
+                onClick={() => onToggle(id) }
+                >
                     {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
                     <div className="text">{text}</div>
                 </div>
